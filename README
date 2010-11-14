@@ -6,7 +6,8 @@ plugin adds some features I wanted as well as eliminates the need for 2 friendsh
 rows created in the table. The goal is to make it relatively seamless for anyone to
 create a fully functional friends system for their application.
 
-
+** MAJOR NOTE ** I took this plugin that hasn't been updated for 7 years and made it work for rails 3 by taking out the generator, 
+This means you need to migrate or generate the correct tables to make it work. This is a gem as well so you can get it off of gemcutter. Ill be updating these docs when I get a chance. - The Net Duck
 Setup
 =====
 Create a friendship model

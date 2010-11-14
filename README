@@ -9,19 +9,31 @@ create a fully functional friends system for their application.
 
 Setup
 =====
-To use this plugin, you will first need to install it. This can be done quite simply
-with the following command.
+Create a friendship model
 
-   script/plugin install http://svn.dnite.org/has_many_friends
+   rails g model friendship user_id:integer friend_id:integer created_at:datetime accepted_at:datetime
 
-We'll need to generate the model and migration for your friendship table.
+Or create it manually with this as your migration file.
+   class YourMigrationName < ActiveRecord::Migration
 
-   script/generate hmf_friendship_model Friendship
-   rake db:migrate
-   
-If you will be running tests, you may need to prepare your test database again.
+      def self.up
+         create_table :<%= table_name %>, :force => true do |t|
+            t.column "user_id",     :integer, :null => false
+            t.column "friend_id",   :integer, :null => false
+            t.column "created_at",  :datetime
+            t.column "accepted_at", :datetime
+          end
+       end
 
-   rake db:test:prepare
+       def self.down
+        drop_table :<%= table_name %>
+       end
+
+   end
+
+Add these lines to your friendship model. 
+   belongs_to :friendshipped_by_me,   :foreign_key => "user_id",   :class_name => "User"
+   belongs_to :friendshipped_for_me,  :foreign_key => "friend_id", :class_name => "User"
 
 You should be just about set! All you need to do is add the following method
 to your User model.

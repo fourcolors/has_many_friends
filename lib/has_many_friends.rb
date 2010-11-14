@@ -133,3 +133,8 @@ module HasManyFriends
     end  
   end
 end
+
+class ActiveRecord::Base
+  include HasManyFriends::UserExtensions
+end
+
